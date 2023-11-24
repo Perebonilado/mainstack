@@ -7,8 +7,7 @@ const AppLayout: FC<PropsWithChildren> = ({ children }) => {
     <Container>
       <section className="flex h-screen overflow-hidden">
         <Navbar />
-        <aside className="w-full max-w-[60px] h-full pt-40"></aside>
-        <main className="h-screen w-[calc(100%-60px)] max-lg:w-full overflow-auto pt-40 no-scrollbar">
+        <main className="h-screen w-full max-w-screen-lg mx-auto max-lg:w-full overflow-auto pt-40 no-scrollbar">
           {children}
         </main>
       </section>
