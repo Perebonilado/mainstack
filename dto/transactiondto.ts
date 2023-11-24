@@ -1,3 +1,5 @@
+import { TransactionType } from "../models/TransactionType";
+
 export interface TransactionDto {
   amount: number;
   metadata: {
@@ -10,6 +12,6 @@ export interface TransactionDto {
   };
   payment_reference: string;
   status: string;
-  type: string;
+  type: TransactionType;
   date: string;
 }
