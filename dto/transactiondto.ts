@@ -4,7 +4,7 @@ export interface TransactionDto {
     name: string;
     type: string;
     email: string;
-    quantity: 1;
+    quantity: number;
     country: string;
     product_name: string;
   };
