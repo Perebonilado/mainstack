@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import "../styles/Global.css"
 import "../config/tailwind/main.css";
 import "../config/tailwind/chrome-bug.css";
 import { reduxStore } from "../config/redux-store";
