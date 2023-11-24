@@ -13,3 +13,14 @@ export const formatNumber = (
     maximumFractionDigits: decimal,
   });
 };
+
+export const concatFirstLetterOfEachWord = (word: string): string => {
+  const splitWord = word.split(" ");
+  let concatWord = "";
+
+  splitWord.forEach((sw) => {
+    concatWord += sw[0];
+  });
+
+  return concatWord;
+};
