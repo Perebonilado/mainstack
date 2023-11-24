@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Logo from "./Logo";
 import Button from "./Button";
 import HomeIcon from "../@icons/HomeIcon";
@@ -11,18 +11,33 @@ import ChatIcon from "../@icons/ChatIcon";
 import MenuToggler from "./MenuToggler";
 import { useRetrieveUserInfoQuery } from "../api-services/userApi";
 import { useAppLoaderContext } from "../contexts/AppLoaderContext";
+import SideBar from "./SideBar";
 
 const Navbar: FC = () => {
-  const { isLoading, isError, data } = useRetrieveUserInfoQuery("");
-  const { setLoading } = useAppLoaderContext()
+  const [isSideBar, setIsSideBar] = useState(false);
+  const { isLoading, error, data } = useRetrieveUserInfoQuery("");
+  const { setLoading } = useAppLoaderContext();
 
-  useEffect(()=>{
-    setLoading(isLoading)
-  },[isLoading])
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
 
   return (
     <>
-      <div className="w-screen absolute top-0 h-10 left-1/2 -translate-x-1/2 bg-white max-w-screen-xl z-20"></div>
+      <div className="w-screen absolute top-0 h-10 left-1/2 -translate-x-1/2 bg-white max-w-screen-xl z-20">
+        <div className="h-0 relative">
+          {isSideBar && (
+            <SideBar
+              lastName={data?.lastName || ""}
+              firstName={data?.firstName || ""}
+              email={data?.email || ""}
+              handleClose={() => {
+                isSideBar && setIsSideBar(false);
+              }}
+            />
+          )}
+        </div>
+      </div>
       <nav className="w-screen absolute top-6 left-1/2 -translate-x-1/2 h-16 rounded-full shadow-md bg-white max-w-screen-xl z-30 py-3 px-6 flex">
         <div className="flex items-center" style={{ flex: 1 }}>
           <Logo />
@@ -51,7 +66,12 @@ const Navbar: FC = () => {
         >
           <Button title="" startIcon={<NotificationIcon />} variant="text" />
           <Button title="" startIcon={<ChatIcon />} variant="text" />
-          <MenuToggler usernameAbbreviation={data?.abbreviation || ""} />
+          <MenuToggler
+            usernameAbbreviation={data?.abbreviation || ""}
+            handleClick={() => {
+              setIsSideBar(() => (isSideBar ? false : true));
+            }}
+          />
         </div>
       </nav>
     </>
