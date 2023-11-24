@@ -1,0 +1,35 @@
+.root {
+  @apply text-[#56616B] text-xs cursor-pointer font-semibold flex items-center justify-center relative overflow-hidden gap-2;
+}
+
+.contained {
+  @apply rounded-full;
+}
+
+.contained.small {
+  @apply py-1 px-2;
+}
+
+.contained.medium {
+  @apply py-2.5 px-4;
+}
+
+.text.large {
+  @apply text-lg;
+}
+
+.text.medium {
+  @apply text-sm;
+}
+
+.text.small {
+  @apply !text-xs;
+}
+
+.contained.primary {
+  @apply bg-[#000] text-white;
+}
+
+.contained.secondary {
+  @apply bg-[#EFF1F6] text-[#000];
+}

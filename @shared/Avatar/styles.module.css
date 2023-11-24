@@ -1,0 +1,15 @@
+.root {
+  @apply rounded-full bg-[#5C6670] flex items-center justify-center relative;
+}
+
+.sm {
+  @apply h-[24px] w-[24px];
+}
+
+.md {
+  @apply h-[28px] w-[28px];
+}
+
+.lg {
+  @apply h-[32px] w-[32px];
+}
