@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useRef } from "react";
 import Logo from "./Logo";
 import Button from "./Button";
 import HomeIcon from "../@icons/HomeIcon";
@@ -17,6 +17,7 @@ const Navbar: FC = () => {
   const [isSideBar, setIsSideBar] = useState(false);
   const { isLoading, error, data } = useRetrieveUserInfoQuery("");
   const { setLoading } = useAppLoaderContext();
+  const togglerRef = useRef(null)
 
   useEffect(() => {
     setLoading(isLoading);
@@ -34,6 +35,7 @@ const Navbar: FC = () => {
               handleClose={() => {
                 isSideBar && setIsSideBar(false);
               }}
+              elementsToAvoidTriggeringClickOutside={[togglerRef]}
             />
           )}
         </div>
@@ -66,12 +68,15 @@ const Navbar: FC = () => {
         >
           <Button title="" startIcon={<NotificationIcon />} variant="text" />
           <Button title="" startIcon={<ChatIcon />} variant="text" />
-          <MenuToggler
-            usernameAbbreviation={data?.abbreviation || ""}
-            handleClick={() => {
-              setIsSideBar(() => (isSideBar ? false : true));
-            }}
-          />
+
+          <div ref={togglerRef}>
+            <MenuToggler
+              usernameAbbreviation={data?.abbreviation || ""}
+              handleClick={() => {
+                setIsSideBar(!isSideBar);
+              }}
+            />
+          </div>
         </div>
       </nav>
     </>

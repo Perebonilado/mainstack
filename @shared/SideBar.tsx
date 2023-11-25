@@ -1,4 +1,4 @@
-import React, { ElementRef, FC } from "react";
+import React, { ElementRef, FC, MutableRefObject } from "react";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import AnalyticsIcon from "../@icons/AnalyticsIcon";
@@ -9,10 +9,11 @@ interface Props {
   lastName: string;
   firstName: string;
   email: string;
+  elementsToAvoidTriggeringClickOutside?: MutableRefObject<any>[]
 }
 
-const SideBar: FC<Props> = ({ handleClose, lastName, firstName, email }) => {
-  const ref = useClickOutside<ElementRef<"div">>(() => handleClose());
+const SideBar: FC<Props> = ({ handleClose, lastName, firstName, email, elementsToAvoidTriggeringClickOutside }) => {
+  const ref = useClickOutside<ElementRef<"div">>(() => handleClose(), elementsToAvoidTriggeringClickOutside);
 
   return (
     <div

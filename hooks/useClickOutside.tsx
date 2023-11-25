@@ -1,12 +1,20 @@
-import { useEffect, useRef } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import { assertIsNode } from "../utils";
 
-const useClickOutside = <T extends HTMLElement,>(callback: () => any) => {
-  const domNode = useRef<T  | null>(null);
+const useClickOutside = <T extends HTMLElement>(
+  callback: () => any,
+  additionalElementsToAvoidTriggeringClickOutide?: MutableRefObject<any>[]
+) => {
+  const domNode = useRef<T | null>(null);
 
   const handleClickOutside = ({ target }: MouseEvent) => {
     assertIsNode(target);
-    if (domNode.current && !domNode.current.contains(target)) callback();
+    if (
+      domNode.current &&
+      !domNode.current.contains(target) &&
+      !additionalElementsToAvoidTriggeringClickOutide?.some((r) => r.current.contains(target))
+    )
+      callback();
   };
 
   useEffect(() => {
@@ -17,7 +25,7 @@ const useClickOutside = <T extends HTMLElement,>(callback: () => any) => {
     document.removeEventListener("mousedown", (e) => handleClickOutside(e));
   }, []);
 
-  return domNode
+  return domNode;
 };
 
 export default useClickOutside;
