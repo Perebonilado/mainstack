@@ -13,11 +13,13 @@ export const transactionsApi = createApi({
     baseUrl,
     timeout: apiTimeOutInMs,
   }),
+  tagTypes: ["transactions"],
   endpoints: (build) => ({
     retrieveAllTransactions: build.query<TransactionModel[], unknown>({
       query: () => ({
         url: "/transactions",
       }),
+      providesTags: ["transactions"],
       transformResponse: (res: TransactionDto[]) => {
         if (!res) return [] as TransactionModel[];
         else {

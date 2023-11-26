@@ -13,11 +13,13 @@ export const userApi = createApi({
     baseUrl,
     timeout: apiTimeOutInMs,
   }),
+  tagTypes: ["user_info"],
   endpoints: (build) => ({
     retrieveUserInfo: build.query<UserModel, unknown>({
       query: () => ({
         url: "/user",
       }),
+      providesTags: ["user_info"],
       transformResponse: (res: UserDTO) => {
         if (!res) return {} as UserModel;
         else {
