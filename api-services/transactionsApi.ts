@@ -23,10 +23,11 @@ export const transactionsApi = createApi({
           return <TransactionModel[]>res.map((tx) => {
             return {
               date: tx.date,
-              description: tx.metadata.type,
-              name: tx.metadata.name,
+              description: tx?.metadata?.type || "Cash withdrawal",
+              name: tx?.metadata?.name,
               status: tx.status,
               type: tx.type,
+              amount: tx.amount,
             };
           });
         }

@@ -1,3 +1,4 @@
+import { TransactionStatus } from "../models/TransactionStatus";
 import { TransactionType } from "../models/TransactionType";
 
 export interface TransactionDto {
@@ -11,7 +12,7 @@ export interface TransactionDto {
     product_name: string;
   };
   payment_reference: string;
-  status: string;
+  status: TransactionStatus;
   type: TransactionType;
   date: string;
 }
