@@ -35,5 +35,5 @@
 }
 
 .contained.secondary {
-  @apply bg-[#EFF1F6] text-[#000];
+  @apply bg-[#EFF1F6] text-[#000] font-bold;
 }
