@@ -8,7 +8,7 @@ interface Props {
 
 const TransactionContainer: FC<Props> = ({ transactions }) => {
   return (
-    <div className="flex flex-col gap-6 py-12">
+    <div className="flex flex-col gap-6 py-8">
       {transactions.map((tx, idx) => (
         <Transaction {...tx} key={idx} />
       ))}

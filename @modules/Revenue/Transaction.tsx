@@ -23,18 +23,18 @@ const Transaction: FC<Props> = ({
     <div className="flex justify-between items-center">
       <div className="flex items-center gap-6">
         {transactionType[type]}
-        <div>
-          <h3 className="text-lg">{description}</h3>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-base">{description}</h3>
           {type === "withdrawal" ? (
             <TransactionStatus status={status} />
           ) : (
-            <p className="text-[#56616B] text-xs font-medium">{name}</p>
+            <p className="text-[#56616B] text-xs font-semibold">{name}</p>
           )}
         </div>
       </div>
       <div>
-        <h3 className="text-lg font-extrabold text-right">USD {amount}</h3>
-        <p className="text-[#56616B] text-xs text-right">{date}</p>
+        <h3 className="text-base font-extrabold text-right">USD {amount}</h3>
+        <p className="text-[#56616B] text-xs text-right font-semibold">{date}</p>
       </div>
     </div>
   );
