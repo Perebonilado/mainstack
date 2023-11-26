@@ -28,7 +28,7 @@ export const userApi = createApi({
             firstName: res.first_name,
             lastName: res.last_name,
             abbreviation: concatFirstLetterOfEachWord(
-              `${res.last_name} ${res.first_name}`
+              `${res.first_name} ${res.last_name}`
             ),
           };
         }
