@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import AppLoader from "../@shared/AppLoader";
 import { useSelector } from "react-redux";
 import { RootState } from "../config/redux-store";
+import { toast } from "react-toastify";
+import { formatCamelCaseToIndividualWords } from "../utils";
 
 interface ContextOptions {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,7 +18,7 @@ const AppLoaderProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const walletApi = useSelector((state: RootState) => state.wallet_api);
   const userApi = useSelector((state: RootState) => state.user_api);
 
-  const apisToTriggerLoaderOnFetch = Object.values({
+  const apiQueriesToWatch = Object.values({
     transactionsApi: Object.values(transactionsApi.queries),
     walletApi: Object.values(walletApi.queries),
     userApi: Object.values(userApi.queries),
@@ -25,7 +27,7 @@ const AppLoaderProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [isLoading, setLoading] = useState(false);
 
   const handleSetLoadingState = () => {
-    const apiFetchInProgress = apisToTriggerLoaderOnFetch.some(
+    const apiFetchInProgress = apiQueriesToWatch.some(
       (query) => query?.status?.toLowerCase() === "pending"
     );
 
@@ -33,9 +35,34 @@ const AppLoaderProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     else setLoading(false);
   };
 
+  const handleShowErrorModal = () => {
+    const errorMessages: string[] = [];
+    apiQueriesToWatch.forEach((query) => {
+      if (query?.error && "data" in query.error) {
+        const { message } = query.error.data as unknown as { message: string };
+        if (message.length) {
+          errorMessages.push(message);
+        }
+      } else if (query?.error) {
+        errorMessages.push(
+          `An error occured when trying to ${formatCamelCaseToIndividualWords(
+            query?.endpointName
+          )}`
+        );
+      }
+    });
+
+    if (errorMessages.length) {
+      for (const err of errorMessages) {
+        toast.error(err);
+      }
+    }
+  };
+
   useEffect(() => {
     handleSetLoadingState();
-  }, [JSON.stringify(apisToTriggerLoaderOnFetch)]);
+    handleShowErrorModal()
+  }, [JSON.stringify(apiQueriesToWatch)]);
 
   return (
     <AppLoaderContext.Provider value={{ setLoading }}>
