@@ -17,18 +17,11 @@ const Home: NextPage = () => {
     refetch: refetchTransactions,
   } = useRetrieveAllTransactionsQuery("", {
     refetchOnReconnect: true,
-    pollingInterval: 120000,
   });
 
-  const { data: walletInfo, error: walletInfoError } =
-    useRetrieveWalletInfoQuery("", { refetchOnReconnect: true });
-
-  useEffect(() => {
-    if (transactionsError && "data" in transactionsError) {
-      const { message }: any = transactionsError.data;
-      toast.error(message);
-    }
-  }, [transactionsError]);
+  const { data: walletInfo } = useRetrieveWalletInfoQuery("", {
+    refetchOnReconnect: true,
+  });
 
   return (
     <AppLayout>
