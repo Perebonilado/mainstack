@@ -25,18 +25,22 @@ export const walletApi = createApi({
             ledgerBalance: {
               amount: formatNumber(res.ledger_balance, 2),
               label: "Ledger Balance",
+              toolTip:"this is the ledger balance"
             },
             pendingPayout: {
               amount: formatNumber(res.pending_payout, 2),
               label: "Pending Payout",
+              toolTip: "this is the pending payout"
             },
             totalPayout: {
               amount: formatNumber(res.total_payout, 2),
               label: "Total Payout",
+              toolTip: "this is the total payout"
             },
             totalRevenue: {
               amount: formatNumber(res.total_revenue, 2),
               label: "Total Revenue",
+              toolTip: "this is the total revenue"
             },
             balance: { amount: formatNumber(res.balance, 2), label: "Balance" },
           };

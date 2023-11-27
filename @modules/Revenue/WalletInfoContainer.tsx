@@ -25,9 +25,15 @@ const WalletInfoContainer: FC<Props> = (props) => {
         </div>
       </div>
       <div style={{ flex: 1 }} className="flex flex-col gap-6">
-        {Object.entries(props).map(([key, { label, amount }]) => {
+        {Object.entries(props).map(([key, { label, amount, toolTip }], idx) => {
           return handleOmitKeyFromWalletSummary(key) ? null : (
-            <WalletItem amount={amount} title={label} />
+            <WalletItem
+              amount={amount}
+              title={label}
+              key={idx}
+              id={`${idx}`}
+              toolTipContent={toolTip}
+            />
           );
         })}
       </div>
