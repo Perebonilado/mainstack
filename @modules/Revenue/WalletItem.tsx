@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Tooltip } from "react-tooltip";
 import ToolTip from "../../@shared/ToolTip";
 
 import cn from "classnames";
