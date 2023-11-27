@@ -61,7 +61,7 @@ const AppLoaderProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     handleSetLoadingState();
-    handleShowErrorModal()
+    handleShowErrorModal();
   }, [JSON.stringify(apiQueriesToWatch)]);
 
   return (

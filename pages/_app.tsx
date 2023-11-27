@@ -13,10 +13,10 @@ import AppLoaderProvider from "../contexts/AppLoaderContext";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ReduxProvider store={reduxStore}>
-        <AppLoaderProvider>
-          <Component {...pageProps} />
-          <ToastContainer />
-        </AppLoaderProvider>
+      <AppLoaderProvider>
+        <Component {...pageProps} />
+        <ToastContainer />
+      </AppLoaderProvider>
     </ReduxProvider>
   );
 }
