@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useRef } from "react";
+import React, { FC, useState, useRef } from "react";
 import Logo from "./Logo";
 import Button from "./Button";
 import HomeIcon from "../@icons/HomeIcon";
@@ -10,7 +10,6 @@ import NotificationIcon from "../@icons/NotificationIcon";
 import ChatIcon from "../@icons/ChatIcon";
 import MenuToggler from "./MenuToggler";
 import { useRetrieveUserInfoQuery } from "../api-services/userApi";
-import { useAppLoaderContext } from "../contexts/AppLoaderContext";
 import SideBar from "./SideBar";
 
 const Navbar: FC = () => {

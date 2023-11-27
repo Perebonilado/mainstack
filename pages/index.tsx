@@ -4,13 +4,10 @@ import AppLayout from "../layout/AppLayout";
 import TransactionsHeader from "../@modules/Revenue/TransactionsHeader";
 import { useRetrieveAllTransactionsQuery } from "../api-services/transactionsApi";
 import TransactionContainer from "../@modules/Revenue/TransactionContainer";
-import { useAppLoaderContext } from "../contexts/AppLoaderContext";
 import { toast } from "react-toastify";
 import ReloadOnError from "../@shared/ReloadOnError";
 import { useRetrieveWalletInfoQuery } from "../api-services/walletApi";
 import WalletInfoContainer from "../@modules/Revenue/WalletInfoContainer";
-import { useSelector } from "react-redux";
-import { RootState } from "../config/redux-store";
 
 const Home: NextPage = () => {
   const {
