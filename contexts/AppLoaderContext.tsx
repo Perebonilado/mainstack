@@ -25,7 +25,6 @@ const AppLoaderProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [isLoading, setLoading] = useState(false);
 
   const handleSetLoadingState = () => {
-    console.log(transactionsApi)
     const apiFetchInProgress = apisToTriggerLoaderOnFetch.some(
       (query) => query?.status?.toLowerCase() === "pending"
     );

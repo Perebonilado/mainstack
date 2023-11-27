@@ -35,3 +35,10 @@ export const formatDateMONTHDDYYY = (date: string) => {
 
   return `${months[month]} ${String(date_).padStart(2, "0")}, ${year}`;
 };
+
+export const formatCamelCaseToIndividualWords = (camelCaseWord?: string) => {
+  if (camelCaseWord) {
+    return camelCaseWord.replace(/([a-z0-9])([A-Z])/g, "$1 $2").toLowerCase();
+  }
+  return "";
+};
