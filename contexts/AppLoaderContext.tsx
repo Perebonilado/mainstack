@@ -10,19 +10,32 @@ interface ContextOptions {
 const AppLoaderContext = React.createContext<ContextOptions | null>(null);
 
 const AppLoaderProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const isSomeQueryPending = useSelector((state: RootState) => state);
-  const [isLoading, setLoading] = useState(false);
-  const stateToCheck = JSON.stringify(Object.entries(isSomeQueryPending).filter(([key, _])=>key.includes('_api')))
+  const transactionsApi = useSelector(
+    (state: RootState) => state.transactions_api
+  );
+  const walletApi = useSelector((state: RootState) => state.wallet_api);
+  const userApi = useSelector((state: RootState) => state.user_api);
 
-  useEffect(() => {
-    const apiFetchInProgress = Object.values(isSomeQueryPending)
-      .map((v) => Object.values(v.queries).map((v_) => v_?.status))
-      .flat()
-      .some((stat) => stat?.toLowerCase() === "pending");
+  const apisToTriggerLoaderOnFetch = Object.values({
+    transactionsApi: Object.values(transactionsApi.queries),
+    walletApi: Object.values(walletApi.queries),
+    userApi: Object.values(userApi.queries),
+  }).flat();
+
+  const [isLoading, setLoading] = useState(false);
+
+  const handleSetLoadingState = () => {
+    const apiFetchInProgress = apisToTriggerLoaderOnFetch
+      .map((v_) => v_?.status)
+      .some((status) => status?.toLowerCase() === "pending");
 
     if (apiFetchInProgress) setLoading(true);
     else setLoading(false);
-  }, [stateToCheck]);
+  };
+
+  useEffect(() => {
+    handleSetLoadingState();
+  }, [JSON.stringify(apisToTriggerLoaderOnFetch)]);
 
   return (
     <AppLoaderContext.Provider value={{ setLoading }}>
