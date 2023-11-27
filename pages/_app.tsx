@@ -1,23 +1,23 @@
 import type { AppProps } from "next/app";
-import "../styles/Global.css"
+import "../styles/Global.css";
 import "../config/tailwind/main.css";
 import "../config/tailwind/chrome-bug.css";
 import { reduxStore } from "../config/redux-store";
 import { Provider as ReduxProvider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import 'react-tooltip/dist/react-tooltip.css'
+import "react-tooltip/dist/react-tooltip.css";
 
 import AppLoaderProvider from "../contexts/AppLoaderContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AppLoaderProvider>
-      <ReduxProvider store={reduxStore}>
+    <ReduxProvider store={reduxStore}>
+      <AppLoaderProvider>
         <Component {...pageProps} />
         <ToastContainer />
-      </ReduxProvider>
-    </AppLoaderProvider>
+      </AppLoaderProvider>
+    </ReduxProvider>
   );
 }
 

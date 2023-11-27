@@ -16,6 +16,7 @@ const Logo: FC = () => {
         objectFit="contain"
         objectPosition={"0 50%"}
         alt="The all-in-one platform for entrepreneurs, creators, and businesses to showcase their work, sell products and services with global payment options."
+        priority
       />
     </div>
   );

@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import ReloadOnError from "../@shared/ReloadOnError";
 import { useRetrieveWalletInfoQuery } from "../api-services/walletApi";
 import WalletInfoContainer from "../@modules/Revenue/WalletInfoContainer";
+import { useSelector } from "react-redux";
+import { RootState } from "../config/redux-store";
 
 const Home: NextPage = () => {
   const {
@@ -21,17 +23,8 @@ const Home: NextPage = () => {
     pollingInterval: 120000,
   });
 
-  const {
-    data: walletInfo,
-    isLoading: walletInfoLoading,
-    error: walletInfoError,
-  } = useRetrieveWalletInfoQuery("", { refetchOnReconnect: true });
-
-  const { setLoading } = useAppLoaderContext();
-
-  useEffect(() => {
-    setLoading(transactionsLoading);
-  }, [transactionsLoading]);
+  const { data: walletInfo, error: walletInfoError } =
+    useRetrieveWalletInfoQuery("", { refetchOnReconnect: true });
 
   useEffect(() => {
     if (transactionsError && "data" in transactionsError) {
