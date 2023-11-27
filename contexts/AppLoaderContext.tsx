@@ -38,12 +38,9 @@ const AppLoaderProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const handleShowErrorModal = () => {
     const errorMessages: string[] = [];
     apiQueriesToWatch.forEach((query) => {
-      if (query?.error && "data" in query.error) {
-        const { message } = query.error.data as unknown as { message: string };
-        if (message.length) {
-          errorMessages.push(message);
-        }
-      } else if (query?.error) {
+      if (query?.error && query?.error?.message) {
+        errorMessages.push(query?.error?.message);
+      } else if (query?.error && !query?.error?.message) {
         errorMessages.push(
           `An error occured when trying to ${formatCamelCaseToIndividualWords(
             query?.endpointName
