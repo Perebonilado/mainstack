@@ -7,6 +7,8 @@ import TransactionContainer from "../@modules/Revenue/TransactionContainer";
 import { useAppLoaderContext } from "../contexts/AppLoaderContext";
 import { toast } from "react-toastify";
 import ReloadOnError from "../@shared/ReloadOnError";
+import { useRetrieveWalletInfoQuery } from "../api-services/walletApi";
+import WalletInfoContainer from "../@modules/Revenue/WalletInfoContainer";
 
 const Home: NextPage = () => {
   const {
@@ -18,6 +20,12 @@ const Home: NextPage = () => {
     refetchOnReconnect: true,
     pollingInterval: 120000,
   });
+
+  const {
+    data: walletInfo,
+    isLoading: walletInfoLoading,
+    error: walletInfoError,
+  } = useRetrieveWalletInfoQuery("", { refetchOnReconnect: true });
 
   const { setLoading } = useAppLoaderContext();
 
@@ -34,6 +42,7 @@ const Home: NextPage = () => {
 
   return (
     <AppLayout>
+      {walletInfo && <WalletInfoContainer {...walletInfo} />}
       {transactions && (
         <TransactionsHeader transactionsCount={transactions.length} />
       )}

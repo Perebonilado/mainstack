@@ -1,7 +1,13 @@
 export interface WalletModel {
-  ledgerBalance: string;
-  totalPayout: string;
-  totalRevenue: string;
-  pendingPayout: string;
-  balance: string;
+  ledgerBalance: WalletItem;
+  totalPayout: WalletItem;
+  totalRevenue: WalletItem;
+  pendingPayout: WalletItem;
+  balance: WalletItem;
+}
+
+interface WalletItem {
+  amount: string;
+  label: string;
+  toolTip?: string;
 }

@@ -22,11 +22,23 @@ export const walletApi = createApi({
         if (!res) return {} as WalletModel;
         else {
           return <WalletModel>{
-            ledgerBalance: formatNumber(res.ledger_balance, 2),
-            pendingPayout: formatNumber(res.pending_payout, 2),
-            totalPayout: formatNumber(res.total_payout, 2),
-            totalRevenue: formatNumber(res.total_revenue, 2),
-            balance: formatNumber(res.balance, 2),
+            ledgerBalance: {
+              amount: formatNumber(res.ledger_balance, 2),
+              label: "Ledger Balance",
+            },
+            pendingPayout: {
+              amount: formatNumber(res.pending_payout, 2),
+              label: "Pending Payout",
+            },
+            totalPayout: {
+              amount: formatNumber(res.total_payout, 2),
+              label: "Total Payout",
+            },
+            totalRevenue: {
+              amount: formatNumber(res.total_revenue, 2),
+              label: "Total Revenue",
+            },
+            balance: { amount: formatNumber(res.balance, 2), label: "Balance" },
           };
         }
       },

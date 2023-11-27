@@ -15,7 +15,7 @@ import SideBar from "./SideBar";
 
 const Navbar: FC = () => {
   const [isSideBar, setIsSideBar] = useState(false);
-  const { isLoading, error, data } = useRetrieveUserInfoQuery("", {
+  const { isLoading, data } = useRetrieveUserInfoQuery("", {
     refetchOnReconnect: true,
   });
   const { setLoading } = useAppLoaderContext();

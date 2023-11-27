@@ -1,16 +1,24 @@
 import React, { FC } from "react";
 
+import cn from "classnames";
+
 interface Props {
   amount: string;
   title: string;
+  amountSize?: "large" | "extralarge";
 }
 
-const WalletItem: FC<Props> = ({ title, amount }) => {
+const WalletItem: FC<Props> = ({ title, amount, amountSize = "large" }) => {
+  const amountSizeStyling = cn({
+    "text-xl": amountSize === "large",
+    "text-3xl": amountSize === "extralarge",
+  });
+
   return (
     <div className="flex">
-      <div className="flex flex-col gap-4">
-        <p className="text-xs text-[#56616B]">{title}</p>
-        <p>USD {amount}</p>
+      <div className="flex flex-col gap-2">
+        <p className="text-sm text-[#56616B]">{title}</p>
+        <p className={`font-extrabold ${amountSizeStyling}`}>USD {amount}</p>
       </div>
     </div>
   );
