@@ -4,10 +4,10 @@ import AppLayout from "../layout/AppLayout";
 import TransactionsHeader from "../@modules/Revenue/TransactionsHeader";
 import { useRetrieveAllTransactionsQuery } from "../api-services/transactionsApi";
 import TransactionContainer from "../@modules/Revenue/TransactionContainer";
-import { toast } from "react-toastify";
 import ReloadOnError from "../@shared/ReloadOnError";
 import { useRetrieveWalletInfoQuery } from "../api-services/walletApi";
 import WalletInfoContainer from "../@modules/Revenue/WalletInfoContainer";
+import AppHead from "../@shared/AppHead";
 
 const Home: NextPage = () => {
   const {
@@ -24,6 +24,8 @@ const Home: NextPage = () => {
   });
 
   return (
+    <>
+    <AppHead title="Mainstack | Revenue"/>
     <AppLayout>
       {walletInfo && <WalletInfoContainer {...walletInfo} />}
       {transactions && (
@@ -38,6 +40,7 @@ const Home: NextPage = () => {
         />
       )}
     </AppLayout>
+    </>
   );
 };
 
