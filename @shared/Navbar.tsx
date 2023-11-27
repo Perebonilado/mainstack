@@ -15,9 +15,11 @@ import SideBar from "./SideBar";
 
 const Navbar: FC = () => {
   const [isSideBar, setIsSideBar] = useState(false);
-  const { isLoading, error, data } = useRetrieveUserInfoQuery("");
+  const { isLoading, error, data } = useRetrieveUserInfoQuery("", {
+    refetchOnReconnect: true,
+  });
   const { setLoading } = useAppLoaderContext();
-  const togglerRef = useRef(null)
+  const togglerRef = useRef(null);
 
   useEffect(() => {
     setLoading(isLoading);
