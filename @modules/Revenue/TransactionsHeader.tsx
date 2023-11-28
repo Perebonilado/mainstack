@@ -5,9 +5,10 @@ import DownloadIcon from "../../@icons/DownloadIcon";
 
 interface Props {
   transactionsCount: number;
+  onFilterClicked: () => void;
 }
 
-const TransactionsHeader: FC<Props> = ({ transactionsCount }) => {
+const TransactionsHeader: FC<Props> = ({ transactionsCount, onFilterClicked }) => {
   return (
     <div className="flex items-center justify-between py-6 border-b border-[#EFF1F6]">
       <div>
@@ -27,6 +28,7 @@ const TransactionsHeader: FC<Props> = ({ transactionsCount }) => {
           variant="contained"
           size="large"
           endIcon={<ChevronDown />}
+          onClick={onFilterClicked}
         />
         <Button
           title="Export list"

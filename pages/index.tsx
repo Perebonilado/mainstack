@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useEffect } from "react";
+import { useState } from "react";
 import AppLayout from "../layout/AppLayout";
 import TransactionsHeader from "../@modules/Revenue/TransactionsHeader";
 import { useRetrieveAllTransactionsQuery } from "../api-services/transactionsApi";
@@ -8,6 +8,7 @@ import ReloadOnError from "../@shared/ReloadOnError";
 import { useRetrieveWalletInfoQuery } from "../api-services/walletApi";
 import WalletInfoContainer from "../@modules/Revenue/WalletInfoContainer";
 import AppHead from "../@shared/AppHead";
+import FilterMenu from "../@modules/Revenue/FilterMenu";
 
 const Home: NextPage = () => {
   const {
@@ -23,23 +24,48 @@ const Home: NextPage = () => {
     refetchOnReconnect: true,
   });
 
+  const [isFilterMenu, setIsFilterMenu] = useState(false);
+  const [filterMenuOpactiy, setFilterMenuOpacity] = useState<0 | 0.6>(0);
+
+  const handleCloseFilterMenu = () => {
+    setFilterMenuOpacity(() => 0);
+    setTimeout(() => {
+      setIsFilterMenu(false);
+    }, 500);
+  };
+
+  const handleOpenFilterMenu = () => {
+    setIsFilterMenu(() => true);
+    setTimeout(() => {
+      setFilterMenuOpacity(() => 0.6);
+    }, 100);
+  };
+
   return (
     <>
-    <AppHead title="Mainstack | Revenue"/>
-    <AppLayout>
-      {walletInfo && <WalletInfoContainer {...walletInfo} />}
-      {transactions && (
-        <TransactionsHeader transactionsCount={transactions.length} />
-      )}
-      {transactions && <TransactionContainer transactions={transactions} />}
-      {!transactions && !transactionsLoading && transactionsError && (
-        <ReloadOnError
-          errorMessage="Error loading transactions"
-          title="Reload Transactions"
-          refetch={refetchTransactions}
-        />
-      )}
-    </AppLayout>
+      <AppHead title="Mainstack | Revenue" />
+      <FilterMenu
+        isFilterMenu={isFilterMenu}
+        handleCloseFilterMenu={handleCloseFilterMenu}
+        filterMenuOpacity={filterMenuOpactiy}
+      />
+      <AppLayout>
+        {walletInfo && <WalletInfoContainer {...walletInfo} />}
+        {transactions && (
+          <TransactionsHeader
+            transactionsCount={transactions.length}
+            onFilterClicked={handleOpenFilterMenu}
+          />
+        )}
+        {transactions && <TransactionContainer transactions={transactions} />}
+        {!transactions && !transactionsLoading && transactionsError && (
+          <ReloadOnError
+            errorMessage="Error loading transactions"
+            title="Reload Transactions"
+            refetch={refetchTransactions}
+          />
+        )}
+      </AppLayout>
     </>
   );
 };
