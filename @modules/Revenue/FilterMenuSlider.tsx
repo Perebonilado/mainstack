@@ -22,7 +22,7 @@ const FilterMenuSlider: FC<Props> = ({
   const handleCloseSliderAndMenu = () => {
     handleCloseSlider();
     handleCloseFilterMenu();
-  }
+  };
 
   return (
     <div
@@ -36,6 +36,33 @@ const FilterMenuSlider: FC<Props> = ({
           startIcon={<CloseIcon />}
           className="hover:bg-[#EFF1F6] p-2 hover:rounded-full"
           onClick={handleCloseSliderAndMenu}
+        />
+      </div>
+
+      <div className="flex items-center justify-between py-8">
+        <Button
+          title="Today"
+          variant="outlined"
+          size="small"
+          className="hover:bg-[#EFF1F6]"
+        />
+        <Button
+          title="Last 7 Days"
+          variant="outlined"
+          size="small"
+          className="hover:bg-[#EFF1F6]"
+        />
+        <Button
+          title="This month"
+          variant="outlined"
+          size="small"
+          className="hover:bg-[#EFF1F6]"
+        />
+        <Button
+          title="Last 3 months"
+          variant="outlined"
+          size="small"
+          className="hover:bg-[#EFF1F6]"
         />
       </div>
     </div>

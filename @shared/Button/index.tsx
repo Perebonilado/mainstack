@@ -9,7 +9,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "secondary";
   disabled?: boolean;
   size?: "small" | "medium" | "large";
-  variant?: "contained" | "text";
+  variant?: "contained" | "text" | "outlined";
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   className?: string;
@@ -45,6 +45,7 @@ const Button: FC<Props> = (props) => {
       [s.large]: size === "large",
       [s.contained]: variant === "contained",
       [s.text]: variant === "text",
+      [s.outlined]: variant === "outlined",
     },
     className
   );

@@ -2,19 +2,23 @@
   @apply text-[#56616B] text-xs cursor-pointer font-semibold flex items-center justify-center relative overflow-hidden gap-2;
 }
 
-.contained {
+.outlined {
+  @apply border border-[#EFF1F6] bg-transparent font-bold text-[#000]
+}
+
+.contained, .outlined {
   @apply rounded-full;
 }
 
-.contained.small {
-  @apply py-1 px-2;
+.contained.small, .outlined.small {
+  @apply py-1.5 px-4;
 }
 
-.contained.medium {
+.contained.medium, .outlined.medium {
   @apply py-2.5 px-4;
 }
 
-.contained.large {
+.contained.large, .outlined.large {
   @apply py-3 px-6;
 }
 
