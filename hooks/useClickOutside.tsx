@@ -12,9 +12,13 @@ const useClickOutside = <T extends HTMLElement>(
     if (
       domNode.current &&
       !domNode.current.contains(target) &&
-      !additionalElementsToAvoidTriggeringClickOutide?.some((r) => r.current.contains(target))
-    )
+      !additionalElementsToAvoidTriggeringClickOutide?.some((r) =>
+        r.current.contains(target)
+      )
+    ) {
       callback();
+    }
+    return;
   };
 
   useEffect(() => {

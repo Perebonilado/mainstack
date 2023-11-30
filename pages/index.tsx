@@ -50,7 +50,9 @@ const Home: NextPage = () => {
         filterMenuOpacity={filterMenuOpactiy}
       />
       <AppLayout>
-        {walletInfo && <WalletInfoContainer {...walletInfo} />}
+        {walletInfo && transactions && (
+          <WalletInfoContainer {...walletInfo} transactions={transactions} />
+        )}
         {transactions && (
           <TransactionsHeader
             transactionsCount={transactions.length}
