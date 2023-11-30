@@ -1,9 +1,7 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Sofia+Sans+Semi+Condensed:wght@1;100;200;300;400;500;600;700;800&display=swap');
-
 @font-face {
-    font-family: 'Sofia Sans Semi Condensed', sans-serif;
-    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Sofia+Sans+Semi+Condensed:wght@1;100;200;300;400;500;600;700;800&display=swap');
+    font-family: 'Degular', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Degular:wght@100&family=Sofia+Sans+Semi+Condensed:wght@1;100;200;300;400;500;600;700;800&display=swap');
 }
 
 :root {
@@ -101,7 +99,7 @@
     background-color: var(--primary);
     color: var(--text-primary);
     overscroll-behavior-x: none;
-    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    /* font-family: 'Degular', sans-serif; */
     /* @apply select-none; */
   }
   

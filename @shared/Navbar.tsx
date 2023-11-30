@@ -42,7 +42,7 @@ const Navbar: FC = () => {
           <Logo />
         </div>
         <div
-          className="flex items-center justify-between gap-4"
+          className="flex items-center justify-between gap-4 max-lg:hidden"
           style={{ flex: 2 }}
         >
           <Button title="Home" variant="text" startIcon={<HomeIcon />} />

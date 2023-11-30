@@ -12,7 +12,7 @@ const TransactionsHeader: FC<Props> = ({ transactionsCount, onFilterClicked }) =
   return (
     <div className="flex items-center justify-between py-6 border-b border-[#EFF1F6]">
       <div>
-        <h2 className="text-xl font-extrabold">
+        <h2 className="text-xl font-bold">
           {transactionsCount === 1
             ? `${transactionsCount} Transaction`
             : `${transactionsCount} Transactions`}

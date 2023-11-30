@@ -30,7 +30,7 @@ const WalletItem: FC<Props> = ({
       >
         <div className="flex flex-col gap-2">
           <p className="text-sm text-[#56616B]">{title}</p>
-          <p className={`font-extrabold ${amountSizeStyling}`}>USD {amount}</p>
+          <p className={`font-bold ${amountSizeStyling}`}>USD {amount}</p>
         </div>
         {toolTipContent && id && (
           <span className="absolute top-0 right-0">

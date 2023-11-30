@@ -33,7 +33,7 @@ const Transaction: FC<Props> = ({
         </div>
       </div>
       <div>
-        <h3 className="text-base font-extrabold text-right">USD {amount}</h3>
+        <h3 className="text-base font-bold text-right">USD {amount}</h3>
         <p className="text-[#56616B] text-xs text-right font-semibold">{date}</p>
       </div>
     </div>
